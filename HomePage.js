@@ -11,35 +11,35 @@ function HomePage() {
   const [exercises, setExercises] = useState([]);
   const navigation = useNavigation();
 
-  // useEffect(() => {
-  //   fetch("http://10.0.2.2:8000/api/")
-  //     // "http://10.0.2.2:8000/api/"
-  //     // http://localhost:8000/api/
-  //     // [Error: Network response was not ok] means successfully talked to the database and the database is saying no
-  //     // [TypeError: Network request failed] means it did not successfully talk to the database
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error("The Network response was not ok and neither am I");
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((exercises) => {
-  //       // console.log("Fetched exercises:", exercises);
-  //       setExercises(exercises);
-  //     })
-  //     .catch((error) => {
-  //       console.error("There be an Error fetching data: ", error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch("http://10.0.2.2:8000/api/")
+      // "http://10.0.2.2:8000/api/"
+      // http://localhost:8000/api/
+      // [Error: Network response was not ok] means successfully talked to the database and the database is saying no
+      // [TypeError: Network request failed] means it did not successfully talk to the database
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("The Network response was not ok and neither am I");
+        }
+        return response.json();
+      })
+      .then((exercises) => {
+        // console.log("Fetched exercises:", exercises);
+        setExercises(exercises);
+      })
+      .catch((error) => {
+        console.error("There be an Error fetching data: ", error);
+      });
+  }, []);
 
-  // if (exercises.length <= 0) {
-  //   console.log("loading");
-  //   return (
-  //     <View>
-  //       <Text>loading</Text>
-  //     </View>
-  //   );
-  // }
+  if (exercises.length <= 0) {
+    console.log("loading");
+    return (
+      <View>
+        <Text>loading</Text>
+      </View>
+    );
+  }
   console.log(exercises.length);
 
   return (

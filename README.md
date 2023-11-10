@@ -1,92 +1,62 @@
-http://127.0.0.1:8000/api/
-http://localhost:8000/admin/exercise_app/exercise/
+<!DOCTYPE html>
+<html lang="en">
 
----
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StrengthSidekick App</title>
+</head>
 
-data from quiz is saving OVER eachother and not adding to the list
+<body>
 
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
--
-- ***
+  <h1>StrengthSidekick App</h1>
 
-DONE....
-prerecorded videos to watch for yoga
+  <p>StrengthSidekick is a fitness application that leverages an algorithm rooted in biomechanics to generate tailor-made workouts based on individual goals, experience levels, and available equipment. The app mimics the expertise of a personal trainer to create workouts that prioritize both effectiveness and efficiency.</p>
 
-homepage
--add scrollable list of prerecodred yoga videos to watch
--add little boxed of view workouts
--have notes pull down in this area
+  <h4>Click <a href="https://github.com/bethjm/exercise_app_backend">HERE</a> for the back end repo</h4>
 
-click on the workout and view video in app
+  <h2>Technologies Used</h2>
 
-health data component
+  <ul>
+    <li>React Native</li>
+    <li>@react-navigation/native</li>
+    <li>@react-navigation/native-stack</li>
+    <li>AsyncStorage</li>
+    <li>React Hooks</li>
+  </ul>
 
-add menu bar at bottom of screen
+  <h2>Features</h2>
 
-add option to delete workout from viewworkout- delete notes and workout from local storage- add warning that the data will delete
+  <h3>Workout Generation</h3>
 
-add quiz to pop up modal and send data to healthdata component
+  <p>The app utilizes a sophisticated algorithm to generate workouts based on the user's preferred split (Full Body, Upper Body, or Lower Body), fitness goals, experience level, and available equipment. The generated workouts include a warm-up routine and a set of exercises tailored to the user's preferences.</p>
 
-start workout feature that prompts a pop up with a check check in and starts a timer
+  <h3>Customizable Warm-up</h3>
 
-Finish workout feature that stops the timer
+  <p>StrengthSidekick includes a customizable warm-up routine that adapts to the user's fitness level and goals. The warm-up exercises are generated dynamically to ensure an effective and personalized warm-up session.</p>
 
-I can type in info for weights and notes, but it does not show again. need to write code to say if there are values saved to show them
+  <h3>Save and View Workouts</h3>
 
-add notes section for the workout that saves with lcoalStorage
+  <p>Users can save their generated workouts with a custom name for future reference. The app stores these workouts using AsyncStorage, allowing users to view and revisit their saved workouts at any time.</p>
 
-spot to add what weights were used and save in localStroage
+  <h3>Note-taking Feature</h3>
 
-it says no exercises to view after hitting new exercises twice even though everything should clear and rerun to generate a new workout
+  <p>The app includes a note-taking feature that allows users to jot down important information, reflections, or additional details related to their fitness journey. Notes are stored locally using AsyncStorage.</p>
 
-update assignfullbodysplit with new info
+  <h2>How to Run</h2>
 
-assign appropriate warm up based on experience level
+  <ol>
+    <li>Clone the repository.</li>
+    <li>Install dependencies using <code>npm install</code>.</li>
+    <li>Run the app using <code>npm start</code> or <code>expo start</code>.</li>
+  </ol>
 
-figure out why warm ups are not mapping to ind workout
+  <p>Note: Ensure you have Node.js and Expo CLI installed on your machine before running the app.</p>
 
-need to get the already assigned warmupexercises to get removed
+  <p>Feel free to explore and enhance the app to suit your fitness needs! If you have any questions or suggestions, please don't hesitate to reach out.</p>
 
-previous exercises are not leaving the screen when new workout is generated
+  <p>Happy exercising! 🏋️‍♂️💪</p>
 
-having issues w/ generating new workout
--check prev version on github
+</body>
 
-having issues with retrieving additional workouts from async storage
--figure out expo developer tools
-
-add in ability to name workouts. they have to have unique names
-
-have assignment propcess be more randomized
-
-assign proper amount of reps based on goal
-
-need to figure out why reps are not being assigned to warm ups
-
----
+</html>
