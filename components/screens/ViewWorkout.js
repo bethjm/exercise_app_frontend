@@ -3,11 +3,9 @@ import { StyleSheet, Text, View, FlatList } from "react-native";
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import PrimaryButton from "../UI/buttons/PrimaryButton";
 import ThirdButton from "../UI/buttons/ThirdButton";
 
 import Colors from "../constants/Colors";
-import SecondaryButton from "../UI/buttons/SecondaryButton";
 
 function ViewWorkout({ navigation, route }) {
   const [savedWorkouts, setSavedWorkouts] = useState([]);
@@ -26,11 +24,23 @@ function ViewWorkout({ navigation, route }) {
     const getSavedData = async () => {
       try {
         const workoutKeys = await AsyncStorage.getAllKeys();
+        console.log("Workout Keys:", workoutKeys);
+
         const savedDataArray = await AsyncStorage.multiGet(workoutKeys);
+        console.log("Saved Data Array:");
+        savedDataArray.forEach(([key, data]) => {
+          console.log(`Key: ${key}`);
+          console.log("Data:", data); // Removed JSON.parse
+        });
+
         const parsedData = savedDataArray.map((data) => JSON.parse(data[1]));
+        console.log("Parsed Data:", parsedData);
+
         const filteredData = parsedData.filter(
           (data) => data.newWorkoutID !== undefined
         );
+        console.log("Filtered Data:", filteredData);
+
         setSavedWorkouts(filteredData);
       } catch (error) {
         console.error("Error retrieving saved data:", error);

@@ -37,18 +37,6 @@
 
   <p>The app includes a note-taking feature that allows users to jot down important information, reflections, or additional details related to their fitness journey. Notes are stored locally using AsyncStorage.</p>
 
-  <h2>How to Run</h2>
-
-  <ol>
-    <li>Clone the repository.</li>
-    <li>Install dependencies using <code>npm install</code>.</li>
-    <li>Run the app using <code>npm start</code> or <code>expo start</code>.</li>
-  </ol>
-
-  <p>Note: Ensure you have Node.js and Expo CLI installed on your machine before running the app.</p>
-
-  <p>Feel free to explore and enhance the app to suit your fitness needs! If you have any questions or suggestions, please don't hesitate to reach out.</p>
-
   <p>Happy exercising! 🏋️‍♂️💪</p>
 
 </body>

@@ -1,15 +1,7 @@
 import React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Alert,
-  ScrollView,
-  FlatList,
-  Modal,
-} from "react-native";
-import { useState, useEffect, useLayoutEffect, useCallback } from "react";
+import { View, Text, StyleSheet, Alert, Modal } from "react-native";
+import { useState, useEffect } from "react";
 
 import Colors from "../constants/Colors";
 import PrimaryButton from "../UI/buttons/PrimaryButton";
@@ -65,7 +57,6 @@ function GenerateScreen({ route, navigation }) {
 
   console.log("generate screen opened");
   ////////////////////////////////////////////////////////////////////////////////////
-  // setSplitAssigned(false)
 
   let totalCount = 0;
 
@@ -75,6 +66,7 @@ function GenerateScreen({ route, navigation }) {
   }
 
   ////////////////////////////////////////////////////////////////////////////////////
+  //LAST FUNCTION
   //assigns reps to exercises based on the equipment and subcategory
   const assignReps = (exercises) => {
     exercises.forEach((exercise) => {
@@ -296,6 +288,8 @@ function GenerateScreen({ route, navigation }) {
     let addExercise = 0;
     let newDisplayExercises = [];
 
+    console.log("full body exercise running");
+
     for (let i = filteredExercises.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [filteredExercises[i], filteredExercises[j]] = [
@@ -332,7 +326,7 @@ function GenerateScreen({ route, navigation }) {
         }
       }
     }
-
+    console.log("DISPLAY EXERCISES", newDisplayExercises);
     setDisplayExercises(newDisplayExercises);
   };
 
@@ -370,6 +364,7 @@ function GenerateScreen({ route, navigation }) {
         }
       }
     }
+    console.log("DISPLAY EXERCISES", newDisplayExercises);
 
     setDisplayExercises(newDisplayExercises);
   };
@@ -384,9 +379,9 @@ function GenerateScreen({ route, navigation }) {
   //FILTER ALL THE EXERICSES THAT MATCH GOAL, EXPERIENCE, AND LOCATION
 
   const filterExercises = () => {
-    // console.log("filterExercises is running");
-    // console.log(triggerNextFunction);
     const possibleFilteredExercises = [];
+
+    console.log("filterexercises running");
 
     for (let i = 0; i < exercises.length; i++) {
       const exercise = exercises[i];
@@ -416,7 +411,6 @@ function GenerateScreen({ route, navigation }) {
   };
 
   useEffect(() => {
-    // console.log("splits are running");
     if (filteredExercises.length > 0) {
       if (responseState.preferredSplit === "Full Body") {
         assignFullBodyExercise();
@@ -430,18 +424,21 @@ function GenerateScreen({ route, navigation }) {
   //FUNCTION ONE
   //ASSIGN THE RIGHT WORKOUT STRUCTURE BASED ON responseState.preferredSplit
   const assignSplit = () => {
+    console.log("ONE: assign split running");
     if (responseState.preferredSplit == "Upper Body") {
       setChosenSplit(upperBodySplit);
+      console.log("split assigned- upper");
     } else if (responseState.preferredSplit == "Lower Body") {
       setChosenSplit(lowerBodySplit);
+      console.log("split assigned- lower");
     } else if (responseState.preferredSplit == "Full Body") {
       setChosenSplit(fullBodySplit);
+      console.log("split assigned- full");
     }
 
     if (filteredExercises.length >= 8) {
+      console.log("TWO: FilteredExercises greater than 8");
       //if there are enough exercises in the filtered workout, then use those to make a new workout
-      // console.log(">= to 8 is running");
-      // console.log(filteredExercises.length);
       setFilteredExercises([]);
       setFilterWarmupExercises([]);
 
@@ -459,10 +456,9 @@ function GenerateScreen({ route, navigation }) {
       //if there is not enough exercises to create a workout, start from the top
       //increase this number later to 20 when more data is added
     } else if (filteredExercises.length < 8) {
-      // console.log(filteredExercises.length);
-      // console.log("less than 8 is running");
+      console.log(filteredExercises.length);
+      console.log("TWO: Filtered Exercises less than 8");
       setTriggerCreateWarmUp(false);
-
       filterWarmUpExercises();
     }
   };
@@ -471,27 +467,30 @@ function GenerateScreen({ route, navigation }) {
   // generate warm up exercises
 
   const createWarmUpExercises = () => {
-    // console.log("createWarmUpExercises is running");
-    let categoryCount = 0;
+    console.log("create warmup running");
     const chosenWarmUpExercises = [];
+    const categoriesToMatch = [
+      "lower_body_posterior",
+      "core",
+      "upper_body_posterior",
+    ];
 
-    for (let j = 0; j < warmUp.length; j++) {
-      const category = warmUp[j];
+    for (const category of categoriesToMatch) {
       for (let k = 0; k < filterWarmupExercises.length; k++) {
         const exercise = filterWarmupExercises[k];
-        if (exercise.category.includes(category) && categoryCount < 1) {
+        if (exercise.category.includes(category)) {
           chosenWarmUpExercises.push(exercise);
           filterWarmupExercises.splice(k, 1);
+          k--;
+          break; // Stop searching for exercises in this category after finding one
         }
       }
-      categoryCount = 0;
     }
 
     assignedWarmUpExercises = chosenWarmUpExercises;
 
     //adjust this when I adjust the others like this to make sure they're triggering together
     if (filteredExercises.length < 8) {
-      // console.log("calling filter exercises from createWarmUpExercises");
       filterExercises();
     } else if (filteredExercises.length >= 8) {
       setWarmUpExercises(assignedWarmUpExercises);
@@ -499,10 +498,6 @@ function GenerateScreen({ route, navigation }) {
   };
 
   const filterWarmUpExercises = () => {
-    // console.log(
-    //   "trigger create warm up FROM filterWarmUpExercises",
-    //   triggerCreateWarmUp
-    // );
     const confirmedExercises = [];
 
     for (let i = 0; i < exercises.length; i++) {
@@ -514,15 +509,28 @@ function GenerateScreen({ route, navigation }) {
         confirmedExercises.push(exercise);
       }
     }
+    console.log(
+      "filtered possible warm up exercises",
+      confirmedExercises.length
+    );
 
     setFilterWarmupExercises(confirmedExercises);
 
-    //mayyyybe need to reset this state in generate newworkout??
+    console.log("triggercreate warm up");
     setTriggerCreateWarmUp(true);
   };
 
   useEffect(() => {
-    if (filterWarmupExercises.length < 8 && triggerCreateWarmUp === true) {
+    if (filterWarmupExercises.length > 8 && triggerCreateWarmUp === true) {
+      //if filtered warm up exercises is less than 8 and triggercreate warm up is true
+      //changed it to greater than to see if that would help
+      console.log(
+        "FOUR: useeffect is running",
+        "triggercreatewarm up",
+        triggerCreateWarmUp,
+        "filter warm up exercises length",
+        filterWarmupExercises.length
+      );
       createWarmUpExercises();
     }
   }, [triggerCreateWarmUp]);
@@ -572,9 +580,6 @@ function GenerateScreen({ route, navigation }) {
     setWorkoutIsSaved(false);
     setDisplayExercises([]);
 
-    // setSplitAssigned(false);
-    //might need to comment this back in if the code on top doesnt work
-    //having this ^^ here is causing the function to retrigger after hitting
     setFilteredExercises([]);
     setChangeState(false);
     setTriggerNextFunction(false);
@@ -589,7 +594,6 @@ function GenerateScreen({ route, navigation }) {
       assignSplit();
       setSplitAssigned(true);
       totalCount += 1;
-      // console.log("TOTAL COUNT FROM GEN SCREEn", totalCount);
     }
   }, [splitAssigned]);
 

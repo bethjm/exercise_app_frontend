@@ -16,10 +16,10 @@ function HomePage() {
       // "http://10.0.2.2:8000/api/"
       // http://localhost:8000/api/
       // [Error: Network response was not ok] means successfully talked to the database and the database is saying no
-      // [TypeError: Network request failed] means it did not successfully talk to the database
+      // [TypeError: Network request failed] means it did not successfully talk to the database.
       .then((response) => {
         if (!response.ok) {
-          throw new Error("The Network response was not ok and neither am I");
+          throw new Error("The Network response is not ok and neither am I");
         }
         return response.json();
       })

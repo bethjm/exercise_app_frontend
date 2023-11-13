@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BarChart, LineChart } from "react-native-chart-kit";
 import { useState, useEffect } from "react";
+
 import {
   StyleSheet,
   Text,
@@ -20,6 +21,8 @@ const HealthData = ({ route }) => {
 
   const [barChartData, setBarChartData] = useState(null);
   const [savedHealthData, setSavedHealthData] = useState([]);
+
+  const navigation = useNavigation();
 
   const dayOfWeekCounts = {
     Monday: 0,
@@ -118,9 +121,12 @@ const HealthData = ({ route }) => {
     calculateBarChart();
   }, [savedHealthData]);
 
-  ///////////////////////////////////////////////////////
+  const goToHomePage = () => {
+    navigation.navigate("HomePage", {});
+  };
 
-  return (
+  ///////////////////////////////////////////////////////
+  return indexData.length > 0 ? (
     <View style={styles.container}>
       <ScrollView>
         <View style={styles.daysOfWeekChart}>
@@ -162,16 +168,13 @@ const HealthData = ({ route }) => {
               backgroundGradientTo: "#fff",
               color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
               strokeWidth: 2,
-              // barPercentage: 0.5,
-              // useShadowColorFromDataset: false,
-              // decimalPlaces: 0,
             }}
           />
 
           <View style={styles.keyContainer}>
             <Text style={styles.keyTitle}>Key</Text>
 
-            <View styles={styles.energyContainer}>
+            <View style={styles.energyContainer}>
               <Text style={styles.energyKey}>Energy</Text>
             </View>
 
@@ -188,6 +191,12 @@ const HealthData = ({ route }) => {
       <View style={styles.navBar}>
         <NavBar />
       </View>
+    </View>
+  ) : (
+    <View style={styles.container}>
+      <Text>There is no data to view</Text>
+      <Text>Try logging a workout and answering the questionarre</Text>
+      <PrimaryButton onPress={goToHomePage}>Go To Home</PrimaryButton>
     </View>
   );
 };
