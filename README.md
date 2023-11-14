@@ -7,7 +7,7 @@
 
   <p>StrengthSidekick is a fitness application that leverages an algorithm rooted in biomechanics to generate tailor-made workouts based on individual goals, experience levels, and available equipment. The app mimics the expertise of a personal trainer to create workouts that prioritize both effectiveness and efficiency.</p>
 
-  <h4>Click <a href="https://github.com/bethjm/exercise_app_backend">HERE</a> for the back end repo</h4>
+  <h3>Click <a href="https://github.com/bethjm/exercise_app_backend">HERE</a> for the back end repo</h3>
 
   <h3>Click <a href="https://www.loom.com/share/5293069034964ab19fcfabaf2758ea25">HERE</a> for a video walk through of the application and explanation of code logic</h3>
 
