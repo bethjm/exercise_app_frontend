@@ -25,7 +25,7 @@ function HomePage() {
         return response.json();
       })
       .then((exercises) => {
-        // console.log("Fetched exercises:", exercises);
+        console.log("Ye exercises been fetched:", exercises);
         setExercises(exercises);
       })
       .catch((error) => {
