@@ -12,7 +12,8 @@ function HomePage() {
   const navigation = useNavigation();
 
   useEffect(() => {
-    fetch("http://10.0.2.2:8000/api/")
+    fetch("https://still-sierra-98287-8179c7527b13.herokuapp.com/exercise/")
+      // fetch("http://10.0.2.2:8000/api/")
       // "http://10.0.2.2:8000/api/"
       // http://localhost:8000/api/
       // [Error: Network response was not ok] means successfully talked to the database and the database is saying no
