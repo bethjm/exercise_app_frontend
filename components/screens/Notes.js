@@ -40,7 +40,7 @@ function Notes() {
           onChangeText={handleNoteChange}
           value={note}
           multiline={true}
-          numberOfLines={100}
+          numberOfLines={9}
         />
       </View>
       <View style={styles.navBar}>
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 10,
   },
-  inputContainer: { height: "100%" },
+  inputContainer: { height: "115%" },
   input: {
     paddingBottom: 200,
     borderWidth: 1,
@@ -71,12 +71,13 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     paddingLeft: 15,
     paddingTop: 10,
+    height: "110%",
   },
   navBar: {
-    position: "absolute",
+    position: "relative",
     bottom: 87,
-    width: "133%",
-    marginLeft: -50,
+    width: "110%",
+    marginLeft: -48,
     backgroundColor: "#f2f2f2",
   },
 });

@@ -52,11 +52,9 @@ function LandingPage({ exercises, route }) {
       <Text onPress={goToCreateWorkout} style={styles.createWorkout}>
         Create New Workout
       </Text>
-      <View style={styles.wrapVideos}>
-        <StretchingVideos />
-      </View>
+      <View style={styles.wrapVideos}>{/* <StretchingVideos /> */}</View>
       <View style={styles.notes}>
-        <Notes handleNoteChange={handleNoteChange} note={note} />
+        {/* <Notes handleNoteChange={handleNoteChange} note={note} /> */}
       </View>
     </ScrollView>
   );
