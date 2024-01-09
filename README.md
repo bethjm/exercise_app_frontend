@@ -11,6 +11,8 @@
 
   <h3>Click <a href="https://www.loom.com/share/5293069034964ab19fcfabaf2758ea25">HERE</a> for a video walk through of the application and explanation of code logic</h3>
 
+  <p>I am working on this app so that it can be fully usable for users. If you would like to see how I document the roadmap for production the link is <a a href="https://drive.google.com/drive/folders/1ebz81n_AFNgQ3LQZ9uUbu2RgecL3Avs8?usp=drive_link">HERE</a></p>
+
   <h2>Technologies Used</h2>
 
   <ul>

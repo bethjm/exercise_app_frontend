@@ -25,8 +25,6 @@ const styles = StyleSheet.create({
     fontWeight: 700,
     lineHeight: 24,
     elevation: 5,
-    shadowColor: Colors.coolThird,
-    shadowRadius: 40,
     opacity: 1,
     marginVertical: 20,
     marginHorizontal: 20,

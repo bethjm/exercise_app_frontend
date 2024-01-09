@@ -28,19 +28,35 @@ function ViewWorkout({ navigation, route }) {
 
         const savedDataArray = await AsyncStorage.multiGet(workoutKeys);
         console.log("Saved Data Array:");
+
         savedDataArray.forEach(([key, data]) => {
           console.log(`Key: ${key}`);
-          console.log("Data:", data); // Removed JSON.parse
+          console.log("Raw Data:", data);
+
+          // Clean unwanted characters (replace "A" or "U" with an empty string)
+          const cleanedData = data.replace(/^[AU]/, "");
+
+          try {
+            const parsedData = JSON.parse(cleanedData);
+            console.log("Parsed Data:", parsedData);
+          } catch (error) {
+            console.error("Error parsing JSON:", error);
+          }
         });
 
-        const parsedData = savedDataArray.map((data) => JSON.parse(data[1]));
-        console.log("Parsed Data:", parsedData);
+        const filteredData = savedDataArray
+          .map(([_, data]) => data.replace(/^[AU]/, ""))
+          .map((data) => {
+            try {
+              return JSON.parse(data);
+            } catch (error) {
+              console.error("Error parsing JSON:", error);
+              return null; // or handle the error in an appropriate way
+            }
+          })
+          .filter((data) => data !== null && data.newWorkoutID !== undefined);
 
-        const filteredData = parsedData.filter(
-          (data) => data.newWorkoutID !== undefined
-        );
         console.log("Filtered Data:", filteredData);
-
         setSavedWorkouts(filteredData);
       } catch (error) {
         console.error("Error retrieving saved data:", error);
@@ -48,6 +64,33 @@ function ViewWorkout({ navigation, route }) {
     };
 
     getSavedData();
+    // const getSavedData = async () => {
+    //   try {
+    //     const workoutKeys = await AsyncStorage.getAllKeys();
+    //     console.log("Workout Keys:", workoutKeys);
+
+    //     const savedDataArray = await AsyncStorage.multiGet(workoutKeys);
+    //     console.log("Saved Data Array:");
+    //     savedDataArray.forEach(([key, data]) => {
+    //       console.log(`Key: ${key}`);
+    //       console.log("Data:", data); // Removed JSON.parse
+    //     });
+
+    //     const parsedData = savedDataArray.map((data) => JSON.parse(data[1]));
+    //     console.log("Parsed Data:", parsedData);
+
+    //     const filteredData = parsedData.filter(
+    //       (data) => data.newWorkoutID !== undefined
+    //     );
+    //     console.log("Filtered Data:", filteredData);
+
+    //     setSavedWorkouts(filteredData);
+    //   } catch (error) {
+    //     console.error("Error retrieving saved data:", error);
+    //   }
+    // };
+
+    // getSavedData();
   }, []);
 
   const goToViewWorkout = (workout, event) => {

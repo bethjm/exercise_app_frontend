@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "front_end_exercise_app",
-    "slug": "front_end_exercise_app",
+    "name": "Strength Side Kick",
+    "slug": "Strength Side Kick",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },

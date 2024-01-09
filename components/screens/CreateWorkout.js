@@ -118,6 +118,6 @@ export default CreateWorkout;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.coolSecondary,
+    backgroundColor: "Colors.coolSecondary",
   },
 });
