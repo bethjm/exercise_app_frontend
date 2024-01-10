@@ -3,7 +3,7 @@ import {
   View,
   Modal,
   TextInput,
-  TouchableOpacity,
+  Pressable,
   StyleSheet,
 } from "react-native";
 import QuestionsSection from "./QuestionsSection";
@@ -31,9 +31,9 @@ function WorkoutModal({
           flex: 1,
         }}
       >
-        <TouchableOpacity onPress={() => closeModal()}>
+        <Pressable onPress={() => closeModal()}>
           <Text style={styles.closeButton}>X</Text>
-        </TouchableOpacity>
+        </Pressable>
 
         <QuestionsSection
           energyState={energyState}

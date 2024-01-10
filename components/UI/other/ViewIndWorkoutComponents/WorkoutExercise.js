@@ -18,7 +18,7 @@ function WorkoutExercise({ exercise, handleWorkoutRepsChange, workoutReps }) {
 
   return (
     // need to rework the show video trigger
-    <View style={styles.bigContainer}>
+    <View>
       <View key={exercise.name} style={styles.container}>
         <View style={styles.leftSide}>
           <View style={styles.topBox}>
@@ -29,18 +29,24 @@ function WorkoutExercise({ exercise, handleWorkoutRepsChange, workoutReps }) {
             <Text style={styles.exerciseEquipment}>
               Equipment: {exercise.equipment}
             </Text>
+
             {exercise.exercise_cues > 0 ? (
-              <Text style={styles.exerciseCues}>{exercise.cues}</Text>
+              <>
+                <Text style={styles.exerciseCues}>{exercise.cues}</Text>
+              </>
             ) : (
-              ""
+              <>
+                <Text>no cues, sorry</Text>
+              </>
             )}
           </View>
         </View>
 
         <View style={styles.rightSide}>
           <Text style={styles.exerciseReps}>{exercise.reps}</Text>
+
           <TextInput
-            placeholder="weight/band"
+            placeholder="EL WEIGHT"
             style={styles.repInput}
             onChangeText={(text) => handleWorkoutRepsChange(exercise.id, text)}
             value={workoutReps[exercise.id] || ""}

@@ -30,7 +30,9 @@ function WarmUpExercise({ exercise, warmUpReps, handleWarmUpRepsChange }) {
             {exercise.exercise_cues.length > 0 ? (
               <Text style={styles.exerciseCues}>Cues: {exercise.cues}</Text>
             ) : (
-              ""
+              <>
+                <Text>no cues, sorry</Text>
+              </>
             )}
           </View>
         </View>

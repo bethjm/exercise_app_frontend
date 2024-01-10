@@ -5,7 +5,6 @@ import {
   ScrollView,
   TextInput,
   Modal,
-  TouchableOpacity,
 } from "react-native";
 import { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -19,6 +18,7 @@ import WorkoutModal from "../UI/other/ViewIndWorkoutComponents/WorkoutModal";
 
 import Colors from "../constants/Colors";
 
+//3 of the errors are coming from here
 function ViewIndWorkout({ navigation, route }) {
   const { workout, savedWorkouts } = route.params;
 
@@ -45,9 +45,16 @@ function ViewIndWorkout({ navigation, route }) {
 
   let key = "HealthData";
 
+  useEffect(() => {
+    // This will run when the component mounts
+    retrieveData();
+  }, []);
+
+  //the values for reps reset when the workout is opened
+
   const saveReps = async () => {
     try {
-      // console.log("Saving reps and notes for workout title:", workout.title);
+      console.log("Saving reps and notes for workout title:", workout.title);
 
       await AsyncStorage.setItem(
         `warmUpReps_${workout.title}`,
@@ -61,7 +68,7 @@ function ViewIndWorkout({ navigation, route }) {
         `notes_${workout.title}`,
         JSON.stringify(notes)
       );
-      // console.log("Reps and notes saved successfully.");
+      console.log("Reps and notes saved successfully.");
     } catch (error) {
       console.log("Error saving reps and notes:", error);
     }
@@ -81,8 +88,8 @@ function ViewIndWorkout({ navigation, route }) {
     }));
   };
 
-  // useEffect(() => {
   const retrieveData = async () => {
+    console.log("attempting the retrieve the data for reps and notes");
     try {
       const warmUpRepsData = await AsyncStorage.getItem(
         `warmUpReps_${workout.title}`
@@ -91,6 +98,10 @@ function ViewIndWorkout({ navigation, route }) {
         `workoutReps_${workout.title}`
       );
       const notesData = await AsyncStorage.getItem(`notes_${workout.title}`);
+
+      console.log("Warm Up Reps Data:", warmUpRepsData);
+      console.log("Workout Reps Data:", workoutRepsData);
+      console.log("Notes Data:", notesData);
 
       if (warmUpRepsData !== null) {
         setWarmUpReps(JSON.parse(warmUpRepsData));
@@ -102,12 +113,9 @@ function ViewIndWorkout({ navigation, route }) {
         setNotes(JSON.parse(notesData));
       }
     } catch (error) {
-      console.log("Error retrieving data:", error);
+      console.log("there be an error retrieving the data, mste:", error);
     }
   };
-
-  //   retrieveData();
-  // }, []);
 
   useEffect(() => {
     saveReps();
@@ -122,7 +130,7 @@ function ViewIndWorkout({ navigation, route }) {
   //////////////////////////////////////////////////////
 
   const startWorkout = () => {
-    retrieveData();
+    // retrieveData();
     setModal(true);
     setWorkoutIsStarted(true);
     setStartTime(Date.now());
@@ -144,8 +152,6 @@ function ViewIndWorkout({ navigation, route }) {
   };
 
   const saveAnswers = async () => {
-    // console.log("------this is savedAnswers ONE", healthDataAnswers);
-
     const healthDataStats = {
       dataKey: Math.floor(Math.random() * 10000000),
       dayOfWeek: new Date()
@@ -184,10 +190,11 @@ function ViewIndWorkout({ navigation, route }) {
     startTimer();
   };
 
-  console.log(
-    "+++++++++++ this is savedAnswers +++++++++++",
-    healthDataAnswers
-  );
+  // console.log(
+  //   "+++++++++++ this is savedAnswers +++++++++++",
+  //   healthDataAnswers
+  // );
+
   const startTimer = () => {
     const interval = setInterval(() => {
       if (startTime) {
@@ -250,9 +257,10 @@ function ViewIndWorkout({ navigation, route }) {
               />
             ))}
           </View>
-
           <View style={styles.workoutContainer}>
-            <Text style={styles.workOutTitle}>Workout Exercises:</Text>
+            <>
+              <Text style={styles.workOutTitle}>Workout Exercises:</Text>
+            </>
             <View style={styles.innerWorkoutContainer}>
               {workout.displayExercises.map((exercise) => (
                 <WorkoutExercise

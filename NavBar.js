@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, Pressable, View } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
 import Colors from "./components/constants/Colors";
@@ -27,21 +27,21 @@ function NavBar() {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={goToNotes}>
+      <Pressable onPress={goToNotes}>
         <Text style={styles.text}>Notes</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={goToHealthData}>
+      </Pressable>
+      <Pressable onPress={goToHealthData}>
         <Text style={styles.text}>Health</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={goToHomePage} style={styles.home}>
+      </Pressable>
+      <Pressable onPress={goToHomePage} style={styles.home}>
         <Text style={styles.homeText}>Home</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
+      </Pressable>
+      <Pressable>
         <Text style={styles.text}>Trainers</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={goToWorkouts}>
+      </Pressable>
+      <Pressable onPress={goToWorkouts}>
         <Text style={styles.text}>Workouts</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 }

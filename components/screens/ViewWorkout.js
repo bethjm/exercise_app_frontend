@@ -38,9 +38,12 @@ function ViewWorkout({ navigation, route }) {
 
           try {
             const parsedData = JSON.parse(cleanedData);
-            console.log("Parsed Data:", parsedData);
+            console.log("ye Data been parsed successfully:", parsedData);
           } catch (error) {
-            console.error("Error parsing JSON:", error);
+            console.error(
+              "oh bother, there be an Error parsing ye old JSON:",
+              error
+            );
           }
         });
 
@@ -50,7 +53,10 @@ function ViewWorkout({ navigation, route }) {
             try {
               return JSON.parse(data);
             } catch (error) {
-              console.error("Error parsing JSON:", error);
+              console.error(
+                "oh my, there be an Error parsing ye old JSON:",
+                error
+              );
               return null; // or handle the error in an appropriate way
             }
           })
@@ -59,7 +65,10 @@ function ViewWorkout({ navigation, route }) {
         console.log("Filtered Data:", filteredData);
         setSavedWorkouts(filteredData);
       } catch (error) {
-        console.error("Error retrieving saved data:", error);
+        console.error(
+          "mate- there be an Error retrieving ye saved data:",
+          error
+        );
       }
     };
 
