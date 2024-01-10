@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Button, Text } from "react-native";
+import { View, StyleSheet, Pressable, Text } from "react-native";
 import { Video } from "expo-av";
 import { useNavigation } from "@react-navigation/native";
 
@@ -36,8 +36,8 @@ function IndVideo(video) {
         />
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Play" onPress={handlePlayButtonPress} />
-        <Button title="Pause" onPress={handlePauseButtonPress} />
+        <Pressable title="Play" onPress={handlePlayButtonPress} />
+        <Pressable title="Pause" onPress={handlePauseButtonPress} />
       </View>
       <PrimaryButton onPress={goToStretchingVideos}>Back</PrimaryButton>
     </View>
