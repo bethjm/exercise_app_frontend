@@ -22,7 +22,6 @@ function Calculate() {
           key.includes("HealthData")
         );
         const savedHealthDataArray = await AsyncStorage.multiGet(filteredKeys);
-        // console.log("health data pulled down");
 
         const parsedData = savedHealthDataArray.map((data) =>
           JSON.parse(data[1])
