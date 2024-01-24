@@ -26,10 +26,6 @@ function CreateWorkout({ navigation, route }) {
     throwAway: "",
   });
 
-  const goToHomePage = () => {
-    navigation.navigate("HomePage", {});
-  };
-
   const handleNextQuestion = (selectedAnswer) => {
     const currentQuestion = createQuiz[currentQuestionIndex];
     const answerIndex = currentQuestion.options.indexOf(selectedAnswer);
