@@ -16,6 +16,10 @@ function WorkoutExercise({ exercise, handleWorkoutRepsChange, workoutReps }) {
     }
   };
 
+  const openInNewTab = (url) => {
+    window.open(url, "_blank", "noreferrer");
+  };
+
   return (
     // need to rework the show video trigger
     <View>
@@ -55,9 +59,13 @@ function WorkoutExercise({ exercise, handleWorkoutRepsChange, workoutReps }) {
       </View>
       <View style={styles.buttonContainer}>
         <FifthButton onPress={handleViewButtonPress}>
-          {showVideo ? "Close" : "Show"}
+          {/* //get link to open in new tab */}
+          <Text onClick={() => openInNewTab(exercise.video)}>
+            Watch Demo Video
+          </Text>
+          {/* {showVideo ? "Close" : "Show"} */}
         </FifthButton>
-        {showVideo && <VideoPlayer videoUri={exercise.videoUri} />}
+        {/* {showVideo && <VideoPlayer videoUri={exercise.video} />} */}
       </View>
     </View>
   );

@@ -13,22 +13,48 @@ const VideoPlayer = ({ videoUri }) => {
     setIsPlaying(false);
   };
 
-  return (
-    <View style={styles.videoContainer}>
-      <Video
-        source={{ uri: videoUri }}
-        style={styles.video}
-        useNativeControls
-        resizeMode="contain"
-        isLooping
-        shouldPlay={isPlaying}
-      />
-      <View style={styles.buttonContainer}>
-        <Button title="Play" onPress={handlePlayButtonPress} />
-        <Button title="Pause" onPress={handlePauseButtonPress} />
+  // return (
+  //   <View style={styles.videoContainer}>
+  //     <Video
+  //       style={styles.video}
+  //       source={{ uri: videoUri }}
+  //       useNativeControls
+  //       resizeMode="contain"
+  //       isLooping
+  //       shouldPlay={isPlaying}
+  //     />
+  //     <View style={styles.buttonContainer}>
+  //       <Button title="Play" onPress={handlePlayButtonPress} />
+  //       <Button title="Pause" onPress={handlePauseButtonPress} />
+  //     </View>
+  //   </View>
+  // );
+
+  try {
+    return (
+      <View style={styles.videoContainer}>
+        <Video
+          style={styles.video}
+          source={{ uri: videoUri }}
+          useNativeControls
+          resizeMode="contain"
+          isLooping
+          shouldPlay={isPlaying}
+        />
+        <View style={styles.buttonContainer}>
+          <Button title="Play" onPress={handlePlayButtonPress} />
+          <Button title="Pause" onPress={handlePauseButtonPress} />
+        </View>
       </View>
-    </View>
-  );
+    );
+  } catch (error) {
+    console.error("Error loading video:", error);
+    return (
+      <View style={styles.errorContainer}>
+        <Text>Error loading video</Text>
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
